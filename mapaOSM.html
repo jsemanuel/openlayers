@@ -40,12 +40,20 @@ opciones = { units : 'm',
 				maxResolution: resolucion,
 				numZoomLevels: zoom,
 				controls: [controlTouch,controlNavegacion,controlZoom]
-
+				//max extentend
 			}
+
+
 
 map = new OpenLayers.Map('map',opciones);   //objeto base
 var OSM = new OpenLayers.Layer.OSM();
 map.addLayer(OSM);
+
+//mostramos una region establecida
+//BoundingBox
+			map = new OpenLayers.Bounds(-8882307.87997250073,-2714472.11172039993,-5319651.24140710011,-1132560.70255260007);
+
+			map.setCenter(region.getCenterLonLat().transform(new OpenLayers.Projection("EPSG:900913"),map.getProjectionObject()),5);//5 nivel de acercamiento
 
 
 }
