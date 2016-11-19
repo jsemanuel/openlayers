@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mapa OpenStreetMap</title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="ol2/OpenLayers.js"></script>
+
+	<style type="text/css">
+	body{
+			height: 100%;
+			width: 100%;		
+	}
+	#map{
+		height: 500px;
+		width: 500px;
+		z-index: 99;
+		}
+
+		</style>
+		<script type="text/javascript">
+
+var inicio =function(){
+
+OpenLayers.IMAGE_RELOAD_ATTEMPTS=0;
+OpenLayers.DOTS_PER_INCH=90.71428571428572;
+OpenLayers.Util.onImageLoadErrorColor='transparent';
+
+// OpenLayers.ProxHost="cgi-bin/proxi.cgi?url";
+
+var map,opciones,proyeccion,resolucion,zoom, controlNavegacion,controlZoom;
+proyeccion = new OpenLayers.Projection("EPSG:4326"); //EPSG:900913
+resolucion = 196543.0339;
+zoom = 20;
+controlTouch = new OpenLayers.Control.TouchNavigation({dragPanOptions:{enableKinetic:true}});
+controlNavegacion=new OpenLayers.Control.Navigation();
+controlZoom=new OpenLayers.Control.Zoom();
+
+opciones = { units : 'm',
+				projection: proyeccion ,
+				maxResolution: resolucion,
+				numZoomLevels: zoom,
+				controls: [controlTouch,controlNavegacion,controlZoom]
+
+			}
+
+map = new OpenLayers.Map('map',opciones);   //objeto base
+var OSM = new OpenLayers.Layer.OSM();
+map.addLayer(OSM);
+
+
+}
+window.onload = inicio;
+
+</script>
+</head>
+<body>
+<div id="map"> </div>
+</body>
+</html>

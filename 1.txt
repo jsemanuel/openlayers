@@ -1,0 +1,81 @@
+or create a new repository on the command line
+
+echo "# geoserver" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/jsemanuel/geoserver.git
+git push -u origin master
+
+…or push an existing repository from the command line
+
+git remote add origin https://github.com/jsemanuel/geoserver.git
+git push -u origin master
+
+
+*****************************************************************
+
+Gecko@Gecko-PC-8 MINGW64 ~
+$ d:
+bash: d:: command not found
+
+Gecko@Gecko-PC-8 MINGW64 ~
+$ cd D:
+
+Gecko@Gecko-PC-8 MINGW64 /d
+$ pwd
+/d
+
+Gecko@Gecko-PC-8 MINGW64 /d
+$ git clone https://github.com/jsemanuel/geoserver.git
+Cloning into 'geoserver'...
+warning: You appear to have cloned an empty repository.
+Checking connectivity... done.
+
+Gecko@Gecko-PC-8 MINGW64 /d
+$ git config --global user.name "jsemanuel"
+
+Gecko@Gecko-PC-8 MINGW64 /d
+$ git config --global user.email "jsemanuel99@gmail.com"
+
+Gecko@Gecko-PC-8 MINGW64 /d
+$ git clone https://github.com/jsemanuel/geoserver.git
+fatal: destination path 'geoserver' already exists and is not       an empty directory.
+
+Gecko@Gecko-PC-8 MINGW64 /d
+$ ls -las
+total 8464
+   0 drwxr-xr-x 1 Gecko 197121       0 feb 25  2016 '$AVG'/
+   0 drwxr-xr-x 1 Gecko 197121       0 ene 10  2016 '$RECYCLE.BIN'/
+   4 drwxr-xr-x 1 Gecko 197121       0 nov 19 09:29 ./
+   4 drwxr-xr-x 1 Gecko 197121       0 jun 16 19:27 ../
+   0 drwxr-xr-x 1 Gecko 197121       0 feb 20  2016 'descarga videos
+   0 drwxr-xr-x 1 Gecko 197121       0 ene 18  2016 'dota 2'/
+  32 drwxr-xr-x 1 Gecko 197121       0 sep 15 09:41 'DOTA 2 OFFLINE-
+ 180 -rw-r--r-- 1 Gecko 197121  182024 may 11  2016 gecko-screensave
+   0 drwxr-xr-x 1 Gecko 197121       0 nov 19 09:29 geoserver/
+   8 drwxr-xr-x 1 Gecko 197121       0 mar 31  2016 JUEGOS/
+   0 drwxr-xr-x 1 Gecko 197121       0 mar 31  2016 msdownld.tmp/
+   0 drwxr-xr-x 1 Gecko 197121       0 ene 10  2016 'Ranked Gaming C
+   0 drwxr-xr-x 1 Gecko 197121       0 ene 18  2016 RGC/
+   0 drwxr-xr-x 1 Gecko 197121       0 mar  3  2016 'System Volume I
+   0 drwxr-xr-x 1 Gecko 197121       0 feb  5  2016 updates/
+8224 -rwxr-xr-x 1 Gecko 197121 8420777 ago 30  2008 Warkeys-1.8.1.0b
+  12 drwxr-xr-x 1 Gecko 197121       0 ene 24  2016 'WoW 5.0.5 PANDA
+
+Gecko@Gecko-PC-8 MINGW64 /d
+$ cd geoserver
+
+Gecko@Gecko-PC-8 MINGW64 /d/geoserver (master)
+$ ls -las
+total 8
+0 drwxr-xr-x 1 Gecko 197121 0 nov 19 09:29 ./
+4 drwxr-xr-x 1 Gecko 197121 0 nov 19 09:29 ../
+4 drwxr-xr-x 1 Gecko 197121 0 nov 19 09:29 .git/
+
+Gecko@Gecko-PC-8 MINGW64 /d/geoserver (master)
+$ ^C
+
+Gecko@Gecko-PC-8 MINGW64 /d/geoserver (master)
+$
+**********************************************************************************************************
