@@ -14,17 +14,17 @@
 	#map{
 		height: 700px;
 		width: 700px;
-		z-index: 99;
+		/*z-index: 99;*/
 		}
 
 		</style>
 	
 
 	<script type="text/javascript">
-var inicio =function(){
-	OpenLayers.IMAGE_RELOAD_ATTEMPTS=0;
-	OpenLayers.DOTS_PER_INCH=90.71428571428572;
-	OpenLayers.Util.onImageLoadErrorColor='transparent';
+	var inicio =function(){
+		OpenLayers.IMAGE_RELOAD_ATTEMPTS=0;
+		OpenLayers.DOTS_PER_INCH=90.71428571428572;
+		OpenLayers.Util.onImageLoadErrorColor='transparent';
 
 		var map,mapGoogleS,mapGoogleH,mapGoogleR,opciones,proyeccion,resolucion,zoom,controlTouch, controlNavegacion,controlZoom;
 		var controlLayers,osm;
@@ -47,7 +47,7 @@ opciones = { units : 'm',
 				numZoomLevels: zoom,
 				controls: [controlNavegacion,controlZoom,controlLayers]
 				//max extentend
-			}
+			};
 
 
 //se crea el objeto base map con la direccion del contenedor y las opciones
@@ -72,6 +72,6 @@ window.onload = inicio;
 
 </head>
 <body>
-
+<div id="map"> </div>
 </body>
 </html>

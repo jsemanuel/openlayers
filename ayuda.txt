@@ -5,6 +5,7 @@ git branch -a //para ver todas las ramas remotas
 git remote -v para ver de donde estamos clonando
 
 gti diff nombredelarchivo //da lo que se ha modificado de ese archivo
+git push origin master// origin repositorio origen master "rama destino"
 
 
 
