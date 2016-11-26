@@ -7,6 +7,70 @@ git remote -v para ver de donde estamos clonando
 gti diff nombredelarchivo //da lo que se ha modificado de ese archivo
 git push origin master// origin repositorio origen master "rama destino"
 
+//comando para resolver el problema de certificados en git
+ git config --global http.sslverify false
+
+
 
 
 api cdn google maps //buscamos la appi de google maps
+
+mapfishapp es una modificacion de mapfish
+
+
+geoserver.org
+geoserver 2.10.0
+tomcat 7 es la mas estable
+
+ssh usuario@192.168.1.150
+sudo service toncat status
+sudo apt-get install tomcat
+java version
+
+instalar geoserver 
+wget -c "url"  //descarga el archivo
+service tomcat7 stop  //detenr el tomcat
+
+copiar el zip en /var/lib/tomcat7/webapps
+sudo cp geoserver.war.zip
+
+cambiamos el usuario y grupo
+sudo chown tomcat7:tomcat7 geoserver.war
+sudo chmod +x geoserver.war
+ls -las
+sudo service tomcat7 start
+
+
+para configurar el archivo java home
+
+ls -la /usr/lib/jvm/
+SUDO NANO /etc/profile.d/java.sh
+
+
+sudo chmod +x /etc/profile.d/java.sh
+source /etc/profile.d/java.sh
+SUDO NANO /etc/default/tomcat7
+
+echo JAVA_HOME //CAMBIAMOS EN  SUDO NANO /etc/profile.d/java.sh
+
+JAVA_HOME
+//para verificar el servidor
+sudo su
+sudo tail -F /var/log/tomcat7/*
+
+
+//para ver los puertos y servicios usados
+netstat -nat | grep 8080
+
+//para reiniciar los servicios de red
+sudo network-manager restart
+
+resumen
+
+sudo apt-get install openjdk-7-jdk
+sudo apt-get install tomcat7
+
+SUDO NANO /etc/profile.d/java.sh
+
+sudo chmod +x /etc/profile.d/java.sh
+source /etc/profile.d/java.sh
