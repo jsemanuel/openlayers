@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mapa OpenStreetMap</title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="D:\openlayers\ol2\OpenLayers-2.13.1/OpenLayers.js"></script>
+
+	<style type="text/css">
+	body{
+			height: 100%;
+			width: 100%;		
+	}
+	#map{
+		height: 800px;
+		width: 800px;
+		z-index: 99;
+		}
+
+		</style>
+		<script type="text/javascript">
+
+var inicio =function(){
+
+OpenLayers.IMAGE_RELOAD_ATTEMPTS=0;
+OpenLayers.DOTS_PER_INCH=90.71428571428572;
+OpenLayers.Util.onImageLoadErrorColor='transparent';
+
+// OpenLayers.ProxHost="cgi-bin/proxi.cgi?url";
+//nos sirve para hacer consultas via wms wfs para poder interactuar con un servidor de mapas
+var map,opciones,proyeccion,resolucion,zoom, controlNavegacion,controlZoom;
+//proyeccioin se representa como un objeto (proyeccion comercial)
+proyeccion = new OpenLayers.Projection("EPSG:4326"); //EPSG:900913
+//rangos en openlayers
+resolucion = 196543.0339;
+//rango de acercamiento q puede variar en google y street maps
+zoom = 20;
+controlTouch = new OpenLayers.Control.TouchNavigation({dragPanOptions:{enableKinetic:true}});
+//instanciamos como  un objeto de navegacion
+controlNavegacion=new OpenLayers.Control.Navigation();
+controlZoom=new OpenLayers.Control.Zoom();
+//objeto opciones con formato json, son opciones que se aplicaran al objeto map
+opciones = { units : 'm',
+				projection: proyeccion ,
+				maxResolution: resolucion,
+				numZoomLevels: zoom,
+				controls: [controlNavegacion,controlZoom]
+				//max extentend
+			}
+
+
+//se crea el objeto base map con la direccion del contenedor y las opciones
+map = new OpenLayers.Map('map',opciones);   //objeto base
+var OSM = new OpenLayers.Layer.OSM();
+// adicionamos o cargamos el mapa osm
+map.addLayer(OSM);
+//map.addLayers([OjLayer1,ObjLayer2]) enviamos un array de objetos layers 
+//mostramos una region establecida
+//BoundingBox
+//objeto region de tipo bounds (maximolatitu,maximolongitu,minimolatitu,minimo longitud)
+			var region = new OpenLayers.Bounds(-8882307.87997250073,-2714472.11172039993,-5319651.24140710011,-1132560.70255260007);
+//map.set-cemter 
+			map.setCenter(region.getCenterLonLat().transform(new OpenLayers.Projection("EPSG:900913"),map.getProjectionObject()),5);//5 nivel de acercamiento
+
+
+}
+window.onload = inicio;
+
+</script>
+</head>
+<body>
+<div id="map"> </div>
+</body>
+</html>

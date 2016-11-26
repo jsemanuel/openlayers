@@ -1,0 +1,11 @@
+git config --user.name "jsemanuel"
+git config --user.email "jsemanuel99@gmail.com"
+git branch // para ver las ramas
+git branch -a //para ver todas las ramas remotas
+git remote -v para ver de donde estamos clonando
+
+gti diff nombredelarchivo //da lo que se ha modificado de ese archivo
+
+
+
+api cdn google maps //buscamos la appi de google maps

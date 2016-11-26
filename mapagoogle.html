@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MAPA GOOGLE</title>
+	<meta charset="utf-8">
+	<script  type="text/javascript" src="http://maps.google.com/maps/api/js?v=3&amp;sensor=false"></script>
+	<script type="text/javascript" src="ol2/OpenLayers.js"></script>
+
+	<style type="text/css">
+	body{
+			height: 100%;
+			width: 100%;		
+	}
+	#map{
+		height: 700px;
+		width: 700px;
+		z-index: 99;
+		}
+
+		</style>
+	
+
+	<script type="text/javascript">
+var inicio =function(){
+	OpenLayers.IMAGE_RELOAD_ATTEMPTS=0;
+	OpenLayers.DOTS_PER_INCH=90.71428571428572;
+	OpenLayers.Util.onImageLoadErrorColor='transparent';
+
+		var map,mapGoogleS,mapGoogleH,mapGoogleR,opciones,proyeccion,resolucion,zoom,controlTouch, controlNavegacion,controlZoom;
+		var controlLayers,osm;
+//proyeccioin se representa como un objeto (proyeccion comercial)
+proyeccion = new OpenLayers.Projection("EPSG:4326"); //EPSG:900913
+//rangos en openlayers
+resolucion = 196543.0339;
+//rango de acercamiento q puede variar en google y street maps
+zoom = 20;
+controlTouch = new OpenLayers.Control.TouchNavigation({dragPanOptions:{enableKinetic:true}});
+//instanciamos como  un objeto de navegacion
+controlNavegacion=new OpenLayers.Control.Navigation();
+controlZoom=new OpenLayers.Control.Zoom();
+
+controlLayers = new OpenLayers.Control.LayerSwitcher();
+//objeto opciones con formato json, son opciones que se aplicaran al objeto map
+opciones = { units : 'm',
+				projection: proyeccion ,
+				maxResolution: resolucion,
+				numZoomLevels: zoom,
+				controls: [controlNavegacion,controlZoom,controlLayers]
+				//max extentend
+			}
+
+
+//se crea el objeto base map con la direccion del contenedor y las opciones
+map = new OpenLayers.Map('map',opciones);  
+//creamos el layer que contendra el mapa de google
+osm = new OpenLayers.Layer.OSM("OpenStreetMap");
+mapGoogleS = new OpenLayers.Layer.Google("mapa satelital",{type:google.maps.MapTypeId.SATELLITE});
+mapGoogleH = new OpenLayers.Layer.Google("mapa hibrido",{type:google.maps.MapTypeId.HYBRID});
+mapGoogleR = new OpenLayers.Layer.Google("mapa CAMINOS",{type:google.maps.MapTypeId.ROAD});
+//SATELLITE ES EL TIPO DE MAPA A MOSTRAR (SE US AMAS HYDRID)
+//map.addLayer(osm);
+map.addLayers([osm,mapGoogleS,mapGoogleH,mapGoogleR]);
+
+var region = new OpenLayers.Bounds(-8882307.87997250073,-2714472.11172039993,-5319651.24140710011,-1132560.70255260007);
+//map.set-cemter 
+			map.setCenter(region.getCenterLonLat().transform(new OpenLayers.Projection("EPSG:900913"),map.getProjectionObject()),5);//5 nivel de acercamiento
+
+}
+window.onload = inicio;
+	</script>
+
+
+</head>
+<body>
+
+</body>
+</html>
