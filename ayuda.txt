@@ -4,6 +4,12 @@ git branch // para ver las ramas
 git branch -a //para ver todas las ramas remotas
 git remote -v para ver de donde estamos clonando
 
+
+//servidor 
+git fetch origin master para ver los cambios del repositorio
+gti pull origin master aplica los cambios
+/////
+
 gti diff nombredelarchivo //da lo que se ha modificado de ese archivo
 git push origin master// origin repositorio origen master "rama destino"
 
@@ -74,3 +80,20 @@ SUDO NANO /etc/profile.d/java.sh
 
 sudo chmod +x /etc/profile.d/java.sh
 source /etc/profile.d/java.sh
+
+/**************************
+error con apache
+nano /etc/apache2/sites-available/000-default.conf 
+dejar solo hast /var/www
+guardar y reiniciar el apache
+/**************************
+scp -r ol2 daniel@192.168.1.150:/var/www/daniel/
+-r si es carpeta sin este si es un archivo
+/******************************************
+
+chmod 777 . le4 dapermisos al adm
+*/////////////////////////
+
+mov ol2 a la carpeta clonada
+/********************
+cp -r  ../ol2 .  espacio punto, ../ directorio de arriba
