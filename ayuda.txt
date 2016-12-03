@@ -97,3 +97,7 @@ chmod 777 . le4 dapermisos al adm
 mov ol2 a la carpeta clonada
 /********************
 cp -r  ../ol2 .  espacio punto, ../ directorio de arriba
+
+***********************************
+para copiar un war en tomcat primero debemos dete3ner el tomcat
+sudo chown tomcat8:tomcat8geoserver.war
