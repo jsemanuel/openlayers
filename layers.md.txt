@@ -1,0 +1,6 @@
+{"name": "Límites Dep. Nacional", "url": "http://geo.gob.bo/geoserver/wms", "layer": "fondos:departamento1"},
+    {"name": "Subestaciones 2013", "url": "http://geo.gob.bo/geoserver/wms", "layer": "autoridadelectricidad:subestaciones2013"},
+    //{"name": "Subestaciones 2015", "url": host+"/geoserver/wms", "layer": "SubEstacionesElectricas:subestaciones2015"},
+    {"name": "Generaci&oacute;n electrica 2015", "url":"http://geo.gob.bo/geoserver/wms", "layer": "autoridadelectricidad:PLANTAS_GENERACION_WGS84_032015"},
+    {"name": "Red electrica de alta tensi&oacute;n 2013", "url": "http://geo.gob.bo/geoserver/wms", "layer": "autoridadelectricidad:lineas_at2013"},
+    {"name": "Red electrica de alta tensi&oacute;n 2015", "url":"http://geo.gob.bo/geoserver/wms", "layer": "autoridadelectricidad:LINEA_AT_WGS84_032015"}
