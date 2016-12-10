@@ -19,25 +19,25 @@
 		}
 
 		#tools{
-			display:inline-blocks;
+			display:inline-block;
 			height: 50px;
 			width: 100%;		
-			background-color:cyan;
+			background-color:darkblue;
 	
 		}
 		#tools.olButton{
 			z-index: 99;
-			display:inline-blocks;
+			display:inline-block;
 			height: 38px;
 			width: 38px;
 
 			}
-		#tools.infoItemInactive{
+		#tools .infoItemInactive{
 			background-image: url(img/icon-info-off.png);
 			background-repeat: no-repeat;
 			background-position: center;
 		}
-		#tools.infoItemActive, .infoItemInactive:hover{
+		#tools .infoItemActive, #tools .infoItemInactive:hover{
 			background-image: url(img/icon-info-on.png);
 		}
 		</style>
@@ -48,7 +48,7 @@
 		OpenLayers.IMAGE_RELOAD_ATTEMPTS=0;
 		OpenLayers.DOTS_PER_INCH=90.71428571428572;
 		OpenLayers.Util.onImageLoadErrorColor='transparent';
-		OpenLayers.ProxyHost = 'cgi-bin/proxi.cgi?url='; // para ayudar
+		//OpenLayers.ProxyHost = 'cgi-bin/proxi.cgi?url='; // para ayudar
 
 		var map,mapGoogleS,mapGoogleH,mapGoogleR,opciones,proyeccion,resolucion,zoom,controlTouch, controlNavegacion,controlZoom;
 		var controlLayers,osm;
@@ -196,8 +196,7 @@ var getInfo = new OpenLayers.Control.WMSGetFeatureInfo(
 	queryVisible: true,
 	eventListeners:{
 		getfeatureinfo: function(event){
-			var popup = new OpenLayers.Popup.
-			FramedCloud('Poup',map.getLonLatFromPixel(event.xy),
+			var popup = new OpenLayers.Popup.FramedCloud('Popup',map.getLonLatFromPixel(event.xy),
 				null,event.text,null,true);
 			map.addPopup(popup,false);
 		}
