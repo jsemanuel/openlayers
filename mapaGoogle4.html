@@ -5,7 +5,6 @@
 	<meta charset="utf-8">
 	<script  type="text/javascript" src="http://maps.google.com/maps/api/js?v=3&amp;sensor=false"></script>
 	<script type="text/javascript" src="ol2/OpenLayers.js"></script>
-	<script type="text/javascript" src="http//www.openlayers.org/api/OpenLayers.js"></script>
 
 	<style type="text/css">
 	body{
@@ -14,32 +13,10 @@
 	}
 	#map{
 		height: 700px;
-		width: 900px;
+		width: 700px;
 		/*z-index: 99;*/
 		}
 
-		#tools{
-			display:inline-blocks;
-			height: 50px;
-			width: 100%;		
-			background-color:cyan;
-	
-		}
-		#tools.olButton{
-			z-index: 99;
-			display:inline-blocks;
-			height: 38px;
-			width: 38px;
-
-			}
-		#tools.infoItemInactive{
-			background-image: url(img/icon-info-off.png);
-			background-repeat: no-repeat;
-			background-position: center;
-		}
-		#tools.infoItemActive, .infoItemInactive:hover{
-			background-image: url(img/icon-info-on.png);
-		}
 		</style>
 	
 
@@ -48,7 +25,7 @@
 		OpenLayers.IMAGE_RELOAD_ATTEMPTS=0;
 		OpenLayers.DOTS_PER_INCH=90.71428571428572;
 		OpenLayers.Util.onImageLoadErrorColor='transparent';
-		OpenLayers.ProxyHost = 'cgi-bin/proxi.cgi?url='; // para ayudar
+		OpenLayers.ProxyHost = 'cgi-bin/proxi.cgi?url=';
 
 		var map,mapGoogleS,mapGoogleH,mapGoogleR,opciones,proyeccion,resolucion,zoom,controlTouch, controlNavegacion,controlZoom;
 		var controlLayers,osm;
@@ -86,7 +63,9 @@ mapGoogleR = new OpenLayers.Layer.Google("mapa CAMINOS",{type:google.maps.MapTyp
 //map.addLayer(osm);
 map.addLayers([osm,mapGoogleS,mapGoogleH,mapGoogleR]);
 //capas o layers*******************************************
-var layerWMS = new OpenLayers.Layer.WMS("Departamentos","http:/\/\geo.gob.bo/geoserver/wms",
+var layerVMS = new OpenLayers.Layer.WMS(
+	   "Departamentos",
+	   "http://geo.gob.bo/geoserver/wms",
 	{
 		layers:'fondos:departamento1',
 		transparent:true //entiende que es una capa que no es un fondo de mapa
@@ -96,12 +75,13 @@ var layerWMS = new OpenLayers.Layer.WMS("Departamentos","http:/\/\geo.gob.bo/geo
 	}
 	);
 //layerWMS.set
-layerWMS.setVisibility(false);//seteamos la visibilidad
-map.addLayer(layerWMS);
-//**************************************
-var layerWMSa = new OpenLayers.Layer.WMS("aero","http:/\/\geo.gob.bo/geoserver/wms",
+map.addLayer(layerVMS);
+
+var layerVMS1 = new OpenLayers.Layer.WMS(
+	   "Subestaciones 2013",
+	   "http://geo.gob.bo/geoserver/wms",
 	{
-		layers:'mdpdd:aero1',
+		layers:'autoridadelectricidad:subestaciones2013',
 		transparent:true //entiende que es una capa que no es un fondo de mapa
 	},
 	{
@@ -109,41 +89,11 @@ var layerWMSa = new OpenLayers.Layer.WMS("aero","http:/\/\geo.gob.bo/geoserver/w
 	}
 	);
 //layerWMS.set
-layerWMSa.setVisibility(false);//seteamos la visibilidad
-map.addLayer(layerWMSa);
+map.addLayer(layerVMS1);
 
-//************************************************
-
-var layerWMSlocal = new OpenLayers.Layer.WMS("Aeropuertos","http://192.168.1.150:7070/geoserver/wms",
-	{
-		layers:'we_manuel:aero1',
-		transparent:true //entiende que es una capa que no es un fondo de mapa
-	},
-	{
-		'displayInLayerSwitcher':true//si se puede visualizar ene el control aparesca marcado en el check
-	}
-	);
-//layerWMS.set
-layerWMSlocal.setVisibility(false);//seteamos la visibilidad
-map.addLayer(layerWMSlocal);
-
-//*************************************
-
-var layerWMSlocal1 = new OpenLayers.Layer.WMS("titicaca","http://192.168.1.150:7070/geoserver/wms",
-	{
-		layers:'we_manuel:cuagua',
-		transparent:true //entiende que es una capa que no es un fondo de mapa
-	},
-	{
-		'displayInLayerSwitcher':true//si se puede visualizar ene el control aparesca marcado en el check
-	}
-	);
-//layerWMS.set
-layerWMSlocal1.setVisibility(false);//seteamos la visibilidad
-map.addLayer(layerWMSlocal1);
-////*********************TAREA***********************************
-
-var layerWMS1 = new OpenLayers.Layer.WMS("PLANTAS_GENERACION","http:/\/\geo.gob.bo/geoserver/wms",
+var layerVMS2 = new OpenLayers.Layer.WMS(
+	   "Generaci&oacute;n electrica 2015",
+	   "http://geo.gob.bo/geoserver/wms",
 	{
 		layers:'autoridadelectricidad:PLANTAS_GENERACION_WGS84_032015',
 		transparent:true //entiende que es una capa que no es un fondo de mapa
@@ -153,85 +103,109 @@ var layerWMS1 = new OpenLayers.Layer.WMS("PLANTAS_GENERACION","http:/\/\geo.gob.
 	}
 	);
 //layerWMS.set
-layerWMS1.setVisibility(false);//seteamos la visibilidad
-map.addLayer(layerWMS1);
+map.addLayer(layerVMS2);
 
-var layerWMS2 = new OpenLayers.Layer.WMS("subestaciones2013","http:/\/\geo.gob.bo/geoserver/wms",
+var layerVMS3 = new OpenLayers.Layer.WMS(
+	   "Red electrica de alta tensi&oacute;n 2013",
+	   "http://geo.gob.bo/geoserver/wms",
 	{
-		layers:'autoridadelectricidad:subestaciones2013',
+		layers:'autoridadelectricidad:lineas_at2013',
 		transparent:true //entiende que es una capa que no es un fondo de mapa
 	},
 	{
-		'displayInLayerSwitcher':true//true//si se puede visualizar ene el control aparesca marcado en el check
+		'displayInLayerSwitcher':true//si se puede visualizar ene el control aparesca marcado en el check
 	}
 	);
 //layerWMS.set
-layerWMS2.setVisibility(false);//seteamos la visibilidad
-map.addLayer(layerWMS2);
+layerVMS3.setVisibility(false);
+map.addLayer(layerVMS3);
 
-var layerWMS3 = new OpenLayers.Layer.WMS("LINEA_AT_WGS84_032015","http:/\/\geo.gob.bo/geoserver/wms",
+var layerVMS4 = new OpenLayers.Layer.WMS(
+	   "Red electrica de alta tensi&oacute;n 2015",
+	   "http://geo.gob.bo/geoserver/wms",
 	{
 		layers:'autoridadelectricidad:LINEA_AT_WGS84_032015',
 		transparent:true //entiende que es una capa que no es un fondo de mapa
 	},
 	{
-		'displayInLayerSwitcher':true//true//si se puede visualizar ene el control aparesca marcado en el check
+		'displayInLayerSwitcher':true//si se puede visualizar ene el control aparesca marcado en el check
 	}
 	);
 //layerWMS.set
-layerWMS3.setVisibility(false);//seteamos la visibilidad
-map.addLayer(layerWMS3);
+
+layerVMS4.setVisibility(false);
+map.addLayer(layerVMS4);
 
 
-
-
-
-
-
-//*********control para mostrar metadata de un layer*************************
-var getInfo = new OpenLayers.Control.WMSGetFeatureInfo(
-{
-	id: 'infoControl',
-	title: 'Informacion',
-	queryVisible: true,
-	eventListeners:{
-		getfeatureinfo: function(event){
-			var popup = new OpenLayers.Popup.
-			FramedCloud('Poup',map.getLonLatFromPixel(event.xy),
-				null,event.text,null,true);
-			map.addPopup(popup,false);
-		}
-	}
-}
-);
-
-map.addControl(getInfo);
-
-
-//****************
-
-var btnInfo = new OpenLayers.Control.Button(
-{
-	displayClass:'info',
-	type:OpenLayers.Control.TYPE_TOGGLE,
-	title: 'Informacion Detallada',
-	eventListeners:
+var layerVMS5 = new OpenLayers.Layer.WMS(
+	   "Sistemas Electricos",
+	   "http://192.168.1.150:7070/geoserver/wms",
 	{
-		'activate':function(){
-			getInfo.activate();
-		
+		layers:'ws_reynaldo:PrincipalesSistemasElectricos',
+		transparent:true //entiende que es una capa que no es un fondo de mapa
 	},
-	
-		'deactivate' : function(){
-			getInfo.deactivate();
-		}
+	{
+		'displayInLayerSwitcher':true//si se puede visualizar ene el control aparesca marcado en el check
 	}
-}
-);
-var tools = document.getElementById('tools');
-var panel = new OpenLayers.Control.Panel({div:tools});
-panel.addControls([btnInfo]);
-map.addControl(panel);
+	);
+//layerWMS.set
+map.addLayer(layerVMS5);
+
+var layerVMS6 = new OpenLayers.Layer.WMS(
+	   "Centros Poblados Nro Habitantes",
+	   "http://192.168.1.150:7070/geoserver/wms",
+	{
+		layers:'ws_reynaldo:CentrosPobladosNroHabitantes',
+		transparent:true //entiende que es una capa que no es un fondo de mapa
+	},
+	{
+		'displayInLayerSwitcher':true//si se puede visualizar ene el control aparesca marcado en el check
+	}
+	);
+//layerWMS.set
+map.addLayer(layerVMS6);
+
+var layerVMS7 = new OpenLayers.Layer.WMS(
+	   "Sistemas Electricos GeoServer",
+	   "http://geo.gob.bo/geoserver/wms",
+	{
+		layers:'mdpdd:PrincipalesSistemasElectricos',
+		transparent:true //entiende que es una capa que no es un fondo de mapa
+	},
+	{
+		'displayInLayerSwitcher':true//si se puede visualizar ene el control aparesca marcado en el check
+	}
+	);
+//layerWMS.set
+map.addLayer(layerVMS7);
+
+
+var layerVMS8 = new OpenLayers.Layer.WMS(
+	   "Sistemas Electricos GeoServer",
+	   "http://geo.gob.bo/geoserver/wms",
+	{
+		layers:'mdpdd:PrincipalesCentrosPoblados',
+		transparent:true //entiende que es una capa que no es un fondo de mapa
+	},
+	{
+		'displayInLayerSwitcher':true//si se puede visualizar ene el control aparesca marcado en el check
+	}
+	);
+//layerWMS.set
+map.addLayer(layerVMS8);
+//*********************************************
+
+var layerVMS5 = new OpenLayers.Layer.WMS(
+	   "Sistemas Electricos",
+	   "http://192.168.1.150:7070/geoserver/wms",
+	{
+		layers:'ws_reynaldo:PrincipalesSistemasElectricos',
+		transparent:true //entiende que es una capa que no es un fondo de mapa
+	},
+	{
+		'displayInLayerSwitcher':true//si se puede visualizar ene el control aparesca marcado en el check
+	}
+	);
 
 //******************************************
 var region = new OpenLayers.Bounds(-8882307.87997250073,-2714472.11172039993,-5319651.24140710011,-1132560.70255260007);
@@ -245,7 +219,6 @@ window.onload = inicio;
 
 </head>
 <body>
-<div id="tools"></div>
 <div id="map"> </div>
 </body>
 </html>

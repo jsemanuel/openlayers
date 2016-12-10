@@ -118,6 +118,5 @@ locate (lo que quiero buscar)
 
 git satsh para ver los cambios mal echos en el servidor
 git aply
-
-
-
+como importar shapefiles a postgis mappinggis.com
+shp2pgsql -s 4326 -I Nombre.shp public.selectrico>selectrico.sql
