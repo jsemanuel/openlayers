@@ -6,3 +6,6 @@ url es una el uri  pero no es una url
 copiar
 scp cuagua.zip manuel@192.168.1.150:/var/lib/tomcat7/webapps/geoserver/data/shapes/manuel
 possicionado en tucarpeta al servidor
+proxi.cgi estan todos los dominios de donde consuminmos recursosq debe estar copiadoi en el servidor cd /usr/lib/cgi-bin/
+sudo a2enmod cgi 
+sido nano proxi.cgi y añadimos 192.168.1.150:7070, localhost:7070,127.0.0.1:7070.

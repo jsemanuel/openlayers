@@ -3,8 +3,7 @@
 <head>
 	<title>MAPA GOOGLE</title>
 	<meta charset="utf-8">
-	<!--script  type="text/javascript" src="http://maps.google.com/maps/api/js?v=3&amp;sensor=false"></script-->
-	<script async defer src="http://maps.google.com/maps/api/js?key=AIzaSyCmyltPP32FUKtiV5kcMxWYFv1Sk8gwVJk" type="text/javascript"></script>
+	<script  type="text/javascript" src="http://maps.google.com/maps/api/js?v=3&amp;sensor=false"></script>
 	<script type="text/javascript" src="ol2/OpenLayers.js"></script>
 
 	<style type="text/css">
@@ -75,8 +74,23 @@ var layerWMS = new OpenLayers.Layer.WMS("Departamentos","http:/\/\geo.gob.bo/geo
 //layerWMS.set
 layerWMS.setVisibility(false);//seteamos la visibilidad
 map.addLayer(layerWMS);
-//********************ultima modificasion
-var layerWMSlocal = new OpenLayers.Layer.WMS("Aeropuertos","http://http://192.168.1.150:7070//geoserver/wms",
+//**************************************
+var layerWMSa = new OpenLayers.Layer.WMS("aero","http:/\/\geo.gob.bo/geoserver/wms",
+	{
+		layers:'mdpdd:aero1',
+		transparent:true //entiende que es una capa que no es un fondo de mapa
+	},
+	{
+		'displayInLayerSwitcher':true//si se puede visualizar ene el control aparesca marcado en el check
+	}
+	);
+//layerWMS.set
+layerWMSa.setVisibility(false);//seteamos la visibilidad
+map.addLayer(layerWMSa);
+
+//************************************************
+
+var layerWMSlocal = new OpenLayers.Layer.WMS("Aeropuertos","http://192.168.1.150:7070/geoserver/wms",
 	{
 		layers:'we_manuel:aero1',
 		transparent:true //entiende que es una capa que no es un fondo de mapa
@@ -89,7 +103,20 @@ var layerWMSlocal = new OpenLayers.Layer.WMS("Aeropuertos","http://http://192.16
 layerWMSlocal.setVisibility(false);//seteamos la visibilidad
 map.addLayer(layerWMSlocal);
 
+//*************************************
 
+var layerWMSlocal1 = new OpenLayers.Layer.WMS("titicaca","http://192.168.1.150:7070/geoserver/wms",
+	{
+		layers:'we_manuel:cuagua',
+		transparent:true //entiende que es una capa que no es un fondo de mapa
+	},
+	{
+		'displayInLayerSwitcher':true//si se puede visualizar ene el control aparesca marcado en el check
+	}
+	);
+//layerWMS.set
+layerWMSlocal1.setVisibility(false);//seteamos la visibilidad
+map.addLayer(layerWMSlocal1);
 ////*********************TAREA***********************************
 
 var layerWMS1 = new OpenLayers.Layer.WMS("PLANTAS_GENERACION","http:/\/\geo.gob.bo/geoserver/wms",
