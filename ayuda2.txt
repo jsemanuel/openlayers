@@ -1,0 +1,8 @@
+tomcat7
+con geoserver-2.7.6-war.zip
+cambiar el puerto de l tomcat en conf/server.xml al 7070 y reiniciar el servicio
+url es una el uri  pero no es una url
+
+copiar
+scp cuagua.zip manuel@192.168.1.150:/var/lib/tomcat7/webapps/geoserver/data/shapes/manuel
+possicionado en tucarpeta al servidor
